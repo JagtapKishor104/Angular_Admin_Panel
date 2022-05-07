@@ -1,0 +1,98 @@
+<!-- project Details -->
+ 
+<ngx-spinner size="medium" type="pacman" color="#FFFF00"></ngx-spinner>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">Projects Details</a>
+
+    <div>
+      <ul class="navbar-nav ms-auto mb-2 mb-2g-0">
+
+        <button class="btn btn-primary mt-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Project</button>
+
+
+      </ul>
+
+
+    </div>
+  </div>
+</nav>
+<div class="table-responsive">
+  
+<table class="table text-center  mt-2">
+  <thead>
+    <tr>
+      <th scope="col">Sr.no</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">visible</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead> 
+  <tbody>
+    <tr>
+      <td >1</td>
+      <td >CRUD operations</td>
+      <td >CRUD Operations Using get, post, put, Delete </td>
+      <td>yes</td>
+      <td>
+        <div class="d-flex justify-content-evenly">
+          <button class="btn btn-primary ">save</button>
+          <button class="btn btn-danger">delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Employee Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="myform">
+     
+          <div class="mb-2">
+            <label  class="form-label">Project Title</label>
+            <input type="text" class="form-control" formControlName="title" minlength="2" maxlength="10" >
+          </div>
+          <div class="mb-2">
+            <label  class="form-label">Project Description</label>
+            <input type="text" class="form-control" formControlName="desc" minlength="2" maxlength="10" >
+          </div>
+          <div class="mb-2">
+            <label  class="form-label">Project visible</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="yes" name="visible" formControlName="visible">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Yes
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="no" name="visible" formControlName="visible">
+              <label class="form-check-label" for="flexRadioDefault2">
+                No
+              </label>
+            </div>
+          </div>        
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" [disabled]="!myform.valid" class="btn btn-primary" (click)="submit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

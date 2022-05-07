@@ -1,0 +1,97 @@
+<ngx-spinner size="medium" type="timer" color="#FFFF00" ></ngx-spinner>
+<nav class="navbar navbar-expand-lg navbar-light" >
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">Employee Details</a>
+
+    <div>
+      <ul class="navbar-nav ms-auto mb-2 mb-2g-0">
+        <button class="btn btn-primary mt-1" type="button" data-bs-toggle="modal" (click)="showbtn()" data-bs-target="#exampleModal">Add Employee</button>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="table-responsive">
+  <table class="table mt-2 text-center table-hover table-striped ">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>title</th>
+        <th>price</th>
+        <th>category</th>
+        <th>description</th>
+
+        <th>IMAGES</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of data">
+        <td>{{d.id}}</td>
+        <td>{{d.title}}</td>
+        <td>{{d.price}}</td>
+        <td>{{d.category}}</td>
+        <td>{{d.description}}</td>
+
+        <td><img src="{{d.image}}" alt="" srcset="" height="60" width="80"></td>
+        <td>
+          <div class="d-flex justify-content-evenly">
+            <button class="btn btn-primary" (click)="editdata(d)" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+            <button class="btn btn-danger" (click)="delete(d.id)">Delete</button>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Employee Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="myform">
+          <div class="mb-2">
+            <label class="form-label">title</label>
+            <input type="text" class="form-control" formControlName="title" />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">price</label>
+            <input type="number" class="form-control" formControlName="price" />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">category</label>
+            <input type="text" class="form-control" formControlName="category"  />
+          </div>  <div class="mb-2">
+            <label class="form-label">description</label>
+            <input type="text" class="form-control" formControlName="description" />
+          </div>
+          <!-- <div class="mb-2">
+            <label class="form-label">Email</label>
+            <input class="form-control" formControlName="category" />
+          </div> -->
+          <div class="mb-2">
+            <label class="form-label">images</label>
+            <input type="file" accept=" image/ *" class="form-control" formControlName="image"/>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" [disabled]="!myform.valid" *ngIf="addbtn" class="btn btn-primary" (click)="submit()">
+          Save changes
+        </button>
+        <button type="button" *ngIf="updatebtn" class="btn btn-warning" (click)="update()">Update Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
